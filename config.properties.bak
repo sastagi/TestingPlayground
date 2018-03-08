@@ -1,4 +1,0 @@
-environment-variables=coverage=true,coverageFile=/sdcard/coverage.ec
-directories-to-pull=/sdcard
-debug-prints: true
-gcloud-bucket: coverage_reports/jenkins_build_number

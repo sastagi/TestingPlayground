@@ -10,10 +10,10 @@ import org.mockito.Mockito.mock
 class ExampleUnitTest {
   @Test
   fun addition_isCorrect() {
-    assertEquals(4, 2 + 2)
-    //val person: Person = mock(Person::class.java)
+    assertEquals(4, PersonUtil().addition(2,2))
+    /*val person: Person = mock(Person::class.java)
 
-    /*val mock = mock<Person> {
+    val mock = mock<Person> {
       on { name } doReturn "text"
     }*/
 

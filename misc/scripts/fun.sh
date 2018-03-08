@@ -17,4 +17,6 @@ DIR_NAME=jenkins_build_number
     #gsutil cp gs://coverage_reports/codecoverage/${number}/Nexus6P-25-en-portrait/artifacts/${number}.ec .
 #done
 
-gsutil rm -r gs://coverage_reports/jenkins_build_number/
+#gsutil -m rm -r gs://coverage_reports/${DIR_NAME}/
+
+gsutil cp gs://coverage_reports/*/flank.tests .

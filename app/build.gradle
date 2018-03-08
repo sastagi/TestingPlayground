@@ -3,6 +3,33 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'jacoco'
+
+jacoco {
+    toolVersion = '0.8.0'
+}
+
+tasks.withType(Test) {
+    jacoco.includeNoLocationClasses = true
+}
+
+task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest']) {
+
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+
+    def fileFilter = ['**/R.class', '**/R$*.class', '**/BuildConfig.*', '**/Manifest*.*', '**/*Test*.*', 'android/**/*.*']
+    def debugTree = fileTree(dir: "$project.buildDir/intermediates/classes/debug", excludes: fileFilter) + fileTree(dir: "$project.buildDir/tmp/kotlin-classes/debug", excludes: fileFilter)
+    def mainSrc = "$project.projectDir/src/main/java"
+
+    sourceDirectories = files([mainSrc])
+    classDirectories = files([debugTree])
+    executionData = fileTree(dir: project.buildDir, includes: [
+            'jacoco/testDebugUnitTest.exec', '*.ec'
+    ])
+}
 
 android {
     compileSdkVersion 26
@@ -25,10 +52,11 @@ android {
         }
     }
     testOptions {
-        unitTests.all {
-            jacoco {
-                includeNoLocationClasses = true
-            }
+        execution 'ANDROID_TEST_ORCHESTRATOR'
+        animationsDisabled true
+
+        unitTests {
+            includeAndroidResources = true
         }
     }
 }
@@ -38,9 +66,11 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-    testImplementation 'junit:junit:4.12'
     implementation 'com.android.support:support-annotations:27.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2-alpha1'
+    androidTestUtil 'com.android.support.test:orchestrator:1.0.2-alpha1'
+
+    testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     testImplementation 'org.mockito:mockito-core:2.8.47'
     implementation 'com.nhaarman:mockito-kotlin:1.5.0'
@@ -48,62 +78,3 @@ dependencies {
 }
 
 apply plugin: 'com.google.gms.google-services'
-
-apply plugin: 'jacoco'
-
-jacoco {
-    toolVersion = '0.7.5.201505241946'
-}
-
-tasks.withType(Test) {
-    jacoco.includeNoLocationClasses = true
-}
-
-task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest', 'createDebugCoverageReport']) { //we use "debug" build type for test coverage (can be other)
-    group = "reporting"
-    description = "Generate unified Jacoco code coverage report"
-
-    reports {
-        xml.enabled = false
-        html.enabled = true
-        csv.enabled = false
-        xml.destination = "${buildDir}/reports/jacocoTestReport.xml"
-        html.destination = "${buildDir}/reports/jacoco"
-        csv.destination = "${buildDir}/reports/jacocoTestReport.csv"
-    }
-
-    def fileFilter = [
-            '**/*Test*.*',
-            '**/AutoValue_*.*',
-            '**/*JavascriptBridge.class',
-            '**/R.class',
-            '**/R$*.class',
-            '**/Manifest*.*',
-            'android/**/*.*',
-            '**/BuildConfig.*',
-            '**/*$ViewBinder*.*',
-            '**/*$ViewInjector*.*',
-            '**/Lambda$*.class',
-            '**/Lambda.class',
-            '**/*Lambda.class',
-            '**/*Lambda*.class',
-            '**/*$InjectAdapter.class',
-            '**/*$ModuleAdapter.class',
-            '**/*$ViewInjector*.class',
-            '**/*_MembersInjector.class', //Dagger2 generated code
-            '*/*_MembersInjector*.*', //Dagger2 generated code
-            '**/*_*Factory*.*', //Dagger2 generated code
-            '*/*Component*.*', //Dagger2 generated code
-            '**/*Module*.*' //Dagger2 generated code
-    ]
-    def debugTree = fileTree(dir: "${buildDir}/intermediates/classes/debug", excludes: fileFilter) //we use "debug" build type for test coverage (can be other)
-    def mainSrc = "${project.projectDir}/src/main/java"
-
-    sourceDirectories = files([mainSrc])
-    classDirectories = files([debugTree])
-    executionData = fileTree(dir: "$buildDir", includes: [
-            "jacoco/testDebugUnitTest.exec", //we use "debug" build type for test coverage (can be other)
-            "outputs/code-coverage/connected/*coverage.ec",
-            "../results/0.exec"
-    ])
-}

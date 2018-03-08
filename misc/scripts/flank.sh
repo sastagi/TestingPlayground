@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
+set -e
+
 DIR_NAME=jenkins_build_number
+
+#gsutil cp gs://coverage_reports/flank.tests .
 
 sed -i.bak '/gcloud-bucket/d' config.properties
 echo "gcloud-bucket: coverage_reports/${DIR_NAME}" >> config.properties
@@ -17,5 +21,8 @@ do
     gsutil cp gs://coverage_reports/${DIR_NAME}/${number}/Nexus6P-25-en-portrait/artifacts/${number}.ec ./results
 done
 
+gsutil mv gs://coverage_reports/${DIR_NAME}/flank.tests gs://coverage_reports/
+
 gsutil -m rm -r gs://coverage_reports/${DIR_NAME}/
 
+rm flank.tests
