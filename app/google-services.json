@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "777027795418",
+    "firebase_url": "https://testingplayground-b3b07.firebaseio.com",
+    "project_id": "testingplayground-b3b07",
+    "storage_bucket": "testingplayground-b3b07.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:777027795418:android:769dfabbd20eaede",
+        "android_client_info": {
+          "package_name": "com.primedroid.testingplayground"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "777027795418-1ffdeaqkb699l6f6qajo4jjft7k8f6r8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.primedroid.testingplayground",
+            "certificate_hash": "17da9f93fe47a4eef5db11f39563d48d3284ceb7"
+          }
+        },
+        {
+          "client_id": "777027795418-cmbu9m68tn3fh5n3sa65ffh3dgqh3oin.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_-ZSvjlUKV9rdXFzkUSIl-r5gzRecuIg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "777027795418-cmbu9m68tn3fh5n3sa65ffh3dgqh3oin.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
