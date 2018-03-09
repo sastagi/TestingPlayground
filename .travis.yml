@@ -15,5 +15,7 @@ android:
 before_install:
     - yes | sdkmanager "platforms;android-27"
 script:
+  - cp app/0.exec app/build
+  - cp app/1.exec app/build
   - ./gradlew jacocoTestReport
   - bash <(curl -s https://codecov.io/bash)

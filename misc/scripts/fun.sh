@@ -19,4 +19,7 @@ DIR_NAME=jenkins_build_number
 
 #gsutil -m rm -r gs://coverage_reports/${DIR_NAME}/
 
-gsutil cp gs://coverage_reports/*/flank.tests .
+#gsutil cp gs://coverage_reports/*/flank.tests .
+
+cp app/0.exec app/build
+cp app/1.exec app/build
