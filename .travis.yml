@@ -17,5 +17,5 @@ before_install:
 script:
   - ./gradlew jacocoUITestReport
   - ./gradlew jacocoUnitTestReport
-  - bash <(curl -s https://codecov.io/bash) -F uitests -f ./app/build/reports/jacoco/jacocoUITestReport/jacocoUITestReport.xml
-  - bash <(curl -s https://codecov.io/bash) -F integration -f ./app/build/reports/jacoco/jacocUnitTestReport/jacocoUnitTestReport.xml
+  - bash <(curl -s https://codecov.io/bash) -F integration -f ./app/build/reports/jacoco/jacocoUITestReport/jacocoUITestReport.xml
+  - bash <(curl -s https://codecov.io/bash) -F unit -f ./app/build/reports/jacoco/jacocoUnitTestReport/jacocoUnitTestReport.xml
