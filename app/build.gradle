@@ -26,8 +26,8 @@ task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest']) {
 
     sourceDirectories = files([mainSrc])
     classDirectories = files([debugTree])
-    executionData = fileTree(dir: project.buildDir, includes: [
-            'jacoco/testDebugUnitTest.exec', '*.exec'
+    executionData = fileTree(dir: project.projectDir, includes: [
+            'build/jacoco/testDebugUnitTest.exec', '*.exec'
     ])
 }
 
