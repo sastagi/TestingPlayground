@@ -15,6 +15,7 @@ android:
 before_install:
     - yes | sdkmanager "platforms;android-27"
 script:
-  - ./gradlew jacocoTestReport
-  - bash <(curl -s https://codecov.io/bash) -F unittests -f ./app/build/reports/jacoco/jacocoTestReport/jacocoTestReport.xml
-  - bash <(curl -s https://codecov.io/bash) -F integration -f ./app/build/reports/jacoco/jacocoTestReport/jacocoTestReport.xml
+  - ./gradlew jacocoUITestReport
+  - ./gradlew jacocoUnitTestReport
+  - bash <(curl -s https://codecov.io/bash) -F uitests -f ./app/build/reports/jacoco/jacocoUITestReport/jacocoUITestReport.xml
+  - bash <(curl -s https://codecov.io/bash) -F integration -f ./app/build/reports/jacoco/jacocUnitoTestReport/jacocoUnitTestReport.xml
