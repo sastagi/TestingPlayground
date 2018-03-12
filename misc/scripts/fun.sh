@@ -1,25 +1,8 @@
 #!/usr/bin/env bash
 
-DIR_NAME=jenkins_build_number
 
-#sed '/gcloud-bucket/d' config.properties
-#echo "gcloud-bucket: coverage_reports/${DIR_NAME}" >> config.properties
-#sed -i.bak '/gcloud-bucket/d' config.properties
-#REPORT_COUNT=$(gsutil ls gs://coverage_reports/codecoverage/ | wc -l)
-
-#echo "The number of files is"
-#echo ${REPORT_COUNT}
-
-
-#for number in `seq 0 ${REPORT_COUNT}`
-#do
-    #gsutil mv gs://coverage_reports/codecoverage/${number}/Nexus6P-25-en-portrait/artifacts/coverage.ec gs://coverage_reports/codecoverage/${number}/Nexus6P-25-en-portrait/artifacts/${number}.ec
-    #gsutil cp gs://coverage_reports/codecoverage/${number}/Nexus6P-25-en-portrait/artifacts/${number}.ec .
-#done
-
-#gsutil -m rm -r gs://coverage_reports/${DIR_NAME}/
-
-#gsutil cp gs://coverage_reports/*/flank.tests .
-
-cp app/0.exec app/build
-cp app/1.exec app/build
+test_report_directory_path_all_devices=$(gsutil ls gs://coverage_reports/jenkins_build_number/0/* | grep -e "/$")
+test_report_directory_path_single_device=(${testreport_directory_path_all_devices})
+download_path_for_coverage_report=${testreport_directory_path_single_device[0]}coverage.ec
+echo "Downloading coverage reports from from: ${download_path_for_coverage_report}"
+gsutil cp ${path} ./app/coverage_reports/0.ec

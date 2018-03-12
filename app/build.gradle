@@ -63,7 +63,7 @@ task jacocoUITestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest']) {
     sourceDirectories = files([mainSrc])
     classDirectories = files([debugTree])
     executionData = fileTree(dir: project.projectDir, includes: [
-            '*.exec'
+            'coverage_reports/*.exec'
     ])
 }
 
