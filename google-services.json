@@ -1,27 +1,27 @@
 {
   "project_info": {
-    "project_number": "1025075740321",
-    "firebase_url": "https://testing-playground-75312.firebaseio.com",
-    "project_id": "testing-playground-75312",
-    "storage_bucket": "testing-playground-75312.appspot.com"
+    "project_number": "427283493779",
+    "firebase_url": "https://testingplayground-539d2.firebaseio.com",
+    "project_id": "testingplayground-539d2",
+    "storage_bucket": "testingplayground-539d2.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1025075740321:android:769dfabbd20eaede",
+        "mobilesdk_app_id": "1:427283493779:android:769dfabbd20eaede",
         "android_client_info": {
           "package_name": "com.primedroid.testingplayground"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1025075740321-otqo90lp981kpeqo6gj0phc0omo58grb.apps.googleusercontent.com",
+          "client_id": "427283493779-2e16mk5988f9mvlab844u4t18vm2qgf5.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBuXRMZ0EH8RUHQhwpJpNMqR-G9opTnB88"
+          "current_key": "AIzaSyBo1-Xs6o0K86QUl6bvy4ZaC5p_NUMhS5Q"
         }
       ],
       "services": {
