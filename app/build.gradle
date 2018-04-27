@@ -6,7 +6,7 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'jacoco'
 
 jacoco {
-    toolVersion = '0.8.0'
+    toolVersion = '0.8.1'
 }
 
 tasks.withType(Test) {
@@ -14,24 +14,6 @@ tasks.withType(Test) {
 }
 
 task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest']) {
-
-    reports {
-        xml.enabled = true
-        html.enabled = true
-    }
-
-    def fileFilter = ['**/R.class', '**/R$*.class', '**/BuildConfig.*', '**/Manifest*.*', '**/*Test*.*', 'android/**/*.*']
-    def debugTree = fileTree(dir: "$project.buildDir/intermediates/classes/debug", excludes: fileFilter) + fileTree(dir: "$project.buildDir/tmp/kotlin-classes/debug", excludes: fileFilter)
-    def mainSrc = "$project.projectDir/src/main/java"
-
-    sourceDirectories = files([mainSrc])
-    classDirectories = files([debugTree])
-    executionData = fileTree(dir: project.projectDir, includes: [
-            'build/jacoco/testDebugUnitTest.exec', '*.exec'
-    ])
-}
-
-task jacocoUnitTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest']) {
 
     reports {
         xml.enabled = true
@@ -69,7 +51,7 @@ task jacocoUITestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest']) {
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "27.0.1"
+    buildToolsVersion '27.0.3'
     defaultConfig {
         applicationId "com.primedroid.testingplayground"
         minSdkVersion 19

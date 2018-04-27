@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-DIR_NAME=jenkins_build_number
+DIR_NAME=testing_build_number
 
 ## Fetch flank.test
 gsutil -q stat gs://coverage_reports/flank.tests
@@ -45,6 +45,6 @@ done
 
 gsutil mv gs://coverage_reports/${DIR_NAME}/flank.tests gs://coverage_reports/
 
-gsutil -m rm -r gs://coverage_reports/${DIR_NAME}/
+#gsutil -m rm -r gs://coverage_reports/${DIR_NAME}/
 
 rm flank.tests
