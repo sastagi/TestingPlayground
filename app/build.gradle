@@ -69,7 +69,7 @@ task jacocoUITestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest']) {
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "27.0.1"
+    buildToolsVersion '27.0.3'
     defaultConfig {
         applicationId "com.primedroid.testingplayground"
         minSdkVersion 19
